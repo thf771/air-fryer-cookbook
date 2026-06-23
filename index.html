@@ -44,6 +44,43 @@
             font-size: 14px;
         }
 
+        .search-box {
+            padding: 20px;
+            background: #f0f4ff;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .search-box input {
+            width: 100%;
+            max-width: 400px;
+            padding: 12px 20px;
+            border: 2px solid #667eea;
+            border-radius: 30px;
+            font-size: 14px;
+            outline: none;
+            transition: all 0.3s;
+            background: white;
+        }
+
+        .search-box input:focus {
+            border-color: #764ba2;
+            box-shadow: 0 0 0 3px rgba(118, 75, 162, 0.1);
+        }
+
+        .search-box input::placeholder {
+            color: #999;
+        }
+
+        .search-results {
+            text-align: center;
+            padding: 10px;
+            color: #666;
+            font-size: 13px;
+            background: #f8f9fa;
+        }
+
         .nav {
             background: #f8f9fa;
             padding: 15px;
@@ -247,6 +284,11 @@
             <p>空气炸烤一体机 · 一机多用 · 美味无限</p>
         </div>
 
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="🔍 搜索食物名称（如：鸡翅、薯条、蛋糕）" onkeyup="searchFood()">
+        </div>
+        <div id="searchResults" class="search-results"></div>
+
         <div class="nav">
             <a href="#meat">肉类食谱</a>
             <a href="#seafood">海鲜食谱</a>
@@ -439,9 +481,60 @@
         </div>
 
         <div class="footer">
-            <p>美的P20空气炸烤一体机美食手册</p>
-            <p>数据来源：美的官方食谱、第三方实测数据</p>
+            <p>空气炸烤一体机美食手册</p>
         </div>
     </div>
+
+    <script>
+        function searchFood() {
+            var input = document.getElementById('searchInput');
+            var filter = input.value.toLowerCase();
+            var resultsDiv = document.getElementById('searchResults');
+            var sections = document.querySelectorAll('.section');
+            var foundCount = 0;
+
+            sections.forEach(function(section) {
+                var tables = section.querySelectorAll('table');
+                tables.forEach(function(table) {
+                    var rows = table.querySelectorAll('tbody tr');
+                    rows.forEach(function(row) {
+                        var nameCell = row.querySelector('td:first-child');
+                        if (nameCell) {
+                            var name = nameCell.textContent.toLowerCase();
+                            if (name.indexOf(filter) > -1) {
+                                row.style.display = '';
+                                foundCount++;
+                            } else {
+                                row.style.display = 'none';
+                            }
+                        }
+                    });
+                });
+            });
+
+            if (filter === '') {
+                resultsDiv.textContent = '';
+                sections.forEach(function(section) {
+                    section.style.display = '';
+                });
+            } else {
+                resultsDiv.textContent = '找到 ' + foundCount + ' 个匹配结果';
+                
+                sections.forEach(function(section) {
+                    var tables = section.querySelectorAll('table');
+                    var hasVisibleRows = false;
+                    tables.forEach(function(table) {
+                        var rows = table.querySelectorAll('tbody tr');
+                        rows.forEach(function(row) {
+                            if (row.style.display !== 'none') {
+                                hasVisibleRows = true;
+                            }
+                        });
+                    });
+                    section.style.display = hasVisibleRows ? '' : 'none';
+                });
+            }
+        }
+    </script>
 </body>
 </html>
