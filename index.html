@@ -331,41 +331,50 @@
             border-radius: 4px;
         }
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
+        .recipe-card {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+            border: 1px solid #f0f0f0;
+        }
+
+        .recipe-card h3 {
+            color: #333;
+            font-size: 18px;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #667eea;
+        }
+
+        .recipe-row {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            margin-bottom: 10px;
+            gap: 10px;
+        }
+
+        .recipe-label {
+            flex: 0 0 80px;
             font-size: 13px;
-            overflow-x: auto;
-            display: block;
+            color: #888;
+            font-weight: 500;
         }
 
-        th, td {
-            padding: 12px 8px;
-            text-align: center;
-            border-bottom: 1px solid #eee;
-        }
-
-        th {
-            background: #667eea;
-            color: white;
-            font-weight: 600;
-            font-size: 12px;
-            white-space: nowrap;
-        }
-
-        td {
-            color: #555;
-        }
-
-        tr:hover {
-            background: #f8f9fa;
+        .recipe-value {
+            flex: 1;
+            font-size: 15px;
+            color: #333;
+            font-weight: 500;
         }
 
         .tag {
             display: inline-block;
-            padding: 4px 10px;
-            border-radius: 12px;
-            font-size: 11px;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 12px;
             font-weight: 600;
         }
 
@@ -392,6 +401,32 @@
         .tag.layer-bottom {
             background: #dcfce7;
             color: #166534;
+        }
+
+        .temp-badge {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .time-badge {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        @media (min-width: 768px) {
+            .recipe-grid {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
         }
 
         .tips {
@@ -466,12 +501,17 @@
         }
 
         @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+
             .container {
                 border-radius: 10px;
+                width: 100%;
             }
 
             .header h1 {
-                font-size: 22px;
+                font-size: 20px;
             }
 
             .tab {
@@ -479,7 +519,56 @@
                 padding: 12px 8px;
             }
 
+            .section {
+                padding: 15px;
             }
+
+            .section h2 {
+                font-size: 18px;
+            }
+
+            .recipe-card {
+                padding: 15px;
+                margin-bottom: 10px;
+            }
+
+            .recipe-card h3 {
+                font-size: 16px;
+                margin-bottom: 10px;
+            }
+
+            .recipe-label {
+                font-size: 12px;
+                flex: 0 0 65px;
+            }
+
+            .recipe-value {
+                font-size: 14px;
+            }
+
+            .tag {
+                font-size: 11px;
+                padding: 3px 10px;
+            }
+
+            .temp-badge, .time-badge {
+                font-size: 12px;
+                padding: 3px 10px;
+            }
+
+            .nav {
+                padding: 10px;
+            }
+
+            .nav a {
+                font-size: 12px;
+                padding: 6px 12px;
+            }
+
+            .search-box {
+                padding: 15px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -525,150 +614,464 @@
 
             <div id="meat" class="section">
                 <h2>肉类食谱</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>食物名称</th>
-                            <th>上层温度</th>
-                            <th>下层温度</th>
-                            <th>是否预热</th>
-                            <th>时间</th>
-                            <th>放置层数</th>
-                            <th>蒸汽补湿</th>
-                            <th>备注</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>蜜汁鸡翅</td><td>180℃</td><td>180℃</td><td><span class="tag no">否</span></td><td>12-15分钟</td><td><span class="tag layer-middle">中层</span></td><td><span class="tag no">否</span></td><td>腌制20分钟</td></tr>
-                        <tr><td>奥尔良鸡翅</td><td>200℃</td><td>180℃</td><td><span class="tag no">否</span></td><td>10-12分钟</td><td><span class="tag layer-middle">中层</span></td><td><span class="tag no">否</span></td><td>腌制30分钟</td></tr>
-                        <tr><td>蒜香鸡腿</td><td>200℃</td><td>180℃</td><td><span class="tag yes">是(5分钟)</span></td><td>20-25分钟</td><td><span class="tag layer-middle">中层</span></td><td><span class="tag yes">是</span></td><td>腌制1小时</td></tr>
-                        <tr><td>脆皮五花肉</td><td>190℃</td><td>180℃</td><td><span class="tag yes">是(5分钟)</span></td><td>20分钟</td><td><span class="tag layer-middle">中层</span></td><td><span class="tag no">否</span></td><td>七分熟后擦干</td></tr>
-                        <tr><td>脆皮五花肉(上色)</td><td>200℃</td><td>160℃</td><td><span class="tag no">否</span></td><td>8分钟</td><td><span class="tag layer-top">上层</span></td><td><span class="tag no">否</span></td><td>猪皮起泡酥脆</td></tr>
-                        <tr><td>香酥鸡胸肉</td><td>170℃</td><td>170℃</td><td><span class="tag no">否</span></td><td>15分钟</td><td><span class="tag layer-middle">中层</span></td><td><span class="tag no">否</span></td><td>黑胡椒盐腌制</td></tr>
-                        <tr><td>烤牛排(一分熟)</td><td>200℃</td><td>180℃</td><td><span class="tag yes">是(5分钟)</span></td><td>6分钟</td><td><span class="tag layer-middle">中层</span></td><td><span class="tag yes">是</span></td><td>室温回温10分钟</td></tr>
-                        <tr><td>烤牛排(三分熟)</td><td>200℃</td><td>180℃</td><td><span class="tag yes">是(5分钟)</span></td><td>8分钟</td><td><span class="tag layer-middle">中层</span></td><td><span class="tag yes">是</span></td><td>静置3分钟食用</td></tr>
-                        <tr><td>烤排骨</td><td>180℃</td><td>180℃</td><td><span class="tag yes">是(5分钟)</span></td><td>25-30分钟</td><td><span class="tag layer-middle">中层</span></td><td><span class="tag yes">是</span></td><td>腌制30分钟</td></tr>
-                        <tr><td>烤香肠</td><td>180℃</td><td>160℃</td><td><span class="tag no">否</span></td><td>10-12分钟</td><td><span class="tag layer-middle">中层</span></td><td><span class="tag no">否</span></td><td>无需解冻</td></tr>
-                        <tr><td>烤鸡整只(≤1.2kg)</td><td>180℃</td><td>180℃</td><td><span class="tag yes">是(5分钟)</span></td><td>40-50分钟</td><td><span class="tag layer-bottom">下层</span></td><td><span class="tag yes">是</span></td><td>提前加水</td></tr>
-                    </tbody>
-                </table>
+                <div class="recipe-grid">
+                    <div class="recipe-card">
+                        <h3>🍗 蜜汁鸡翅</h3>
+                        <div class="recipe-row"><span class="recipe-label">温度</span><span class="recipe-value"><span class="temp-badge">上 180℃</span> <span class="temp-badge">下 180℃</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">时间</span><span class="recipe-value"><span class="time-badge">12-15分钟</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">预热</span><span class="recipe-value"><span class="tag no">否</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">层数</span><span class="recipe-value"><span class="tag layer-middle">中层</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">蒸汽</span><span class="recipe-value"><span class="tag no">否</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">备注</span><span class="recipe-value">腌制20分钟</span></div>
+                    </div>
+                    <div class="recipe-card">
+                        <h3>🍗 奥尔良鸡翅</h3>
+                        <div class="recipe-row"><span class="recipe-label">温度</span><span class="recipe-value"><span class="temp-badge">上 200℃</span> <span class="temp-badge">下 180℃</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">时间</span><span class="recipe-value"><span class="time-badge">10-12分钟</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">预热</span><span class="recipe-value"><span class="tag no">否</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">层数</span><span class="recipe-value"><span class="tag layer-middle">中层</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">蒸汽</span><span class="recipe-value"><span class="tag no">否</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">备注</span><span class="recipe-value">腌制30分钟</span></div>
+                    </div>
+                    <div class="recipe-card">
+                        <h3>🍗 蒜香鸡腿</h3>
+                        <div class="recipe-row"><span class="recipe-label">温度</span><span class="recipe-value"><span class="temp-badge">上 200℃</span> <span class="temp-badge">下 180℃</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">时间</span><span class="recipe-value"><span class="time-badge">20-25分钟</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">预热</span><span class="recipe-value"><span class="tag yes">是(5分钟)</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">层数</span><span class="recipe-value"><span class="tag layer-middle">中层</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">蒸汽</span><span class="recipe-value"><span class="tag yes">是</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">备注</span><span class="recipe-value">腌制1小时</span></div>
+                    </div>
+                    <div class="recipe-card">
+                        <h3>🥓 脆皮五花肉</h3>
+                        <div class="recipe-row"><span class="recipe-label">温度</span><span class="recipe-value"><span class="temp-badge">上 190℃</span> <span class="temp-badge">下 180℃</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">时间</span><span class="recipe-value"><span class="time-badge">20分钟</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">预热</span><span class="recipe-value"><span class="tag yes">是(5分钟)</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">层数</span><span class="recipe-value"><span class="tag layer-middle">中层</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">蒸汽</span><span class="recipe-value"><span class="tag no">否</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">备注</span><span class="recipe-value">七分熟后擦干</span></div>
+                    </div>
+                    <div class="recipe-card">
+                        <h3>🥓 脆皮五花肉(上色)</h3>
+                        <div class="recipe-row"><span class="recipe-label">温度</span><span class="recipe-value"><span class="temp-badge">上 200℃</span> <span class="temp-badge">下 160℃</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">时间</span><span class="recipe-value"><span class="time-badge">8分钟</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">预热</span><span class="recipe-value"><span class="tag no">否</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">层数</span><span class="recipe-value"><span class="tag layer-top">上层</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">蒸汽</span><span class="recipe-value"><span class="tag no">否</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">备注</span><span class="recipe-value">猪皮起泡酥脆</span></div>
+                    </div>
+                    <div class="recipe-card">
+                        <h3>🍖 香酥鸡胸肉</h3>
+                        <div class="recipe-row"><span class="recipe-label">温度</span><span class="recipe-value"><span class="temp-badge">上 170℃</span> <span class="temp-badge">下 170℃</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">时间</span><span class="recipe-value"><span class="time-badge">15分钟</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">预热</span><span class="recipe-value"><span class="tag no">否</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">层数</span><span class="recipe-value"><span class="tag layer-middle">中层</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">蒸汽</span><span class="recipe-value"><span class="tag no">否</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">备注</span><span class="recipe-value">黑胡椒盐腌制</span></div>
+                    </div>
+                    <div class="recipe-card">
+                        <h3>🥩 烤牛排(一分熟)</h3>
+                        <div class="recipe-row"><span class="recipe-label">温度</span><span class="recipe-value"><span class="temp-badge">上 200℃</span> <span class="temp-badge">下 180℃</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">时间</span><span class="recipe-value"><span class="time-badge">6分钟</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">预热</span><span class="recipe-value"><span class="tag yes">是(5分钟)</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">层数</span><span class="recipe-value"><span class="tag layer-middle">中层</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">蒸汽</span><span class="recipe-value"><span class="tag yes">是</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">备注</span><span class="recipe-value">室温回温10分钟</span></div>
+                    </div>
+                    <div class="recipe-card">
+                        <h3>🥩 烤牛排(三分熟)</h3>
+                        <div class="recipe-row"><span class="recipe-label">温度</span><span class="recipe-value"><span class="temp-badge">上 200℃</span> <span class="temp-badge">下 180℃</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">时间</span><span class="recipe-value"><span class="time-badge">8分钟</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">预热</span><span class="recipe-value"><span class="tag yes">是(5分钟)</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">层数</span><span class="recipe-value"><span class="tag layer-middle">中层</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">蒸汽</span><span class="recipe-value"><span class="tag yes">是</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">备注</span><span class="recipe-value">静置3分钟食用</span></div>
+                    </div>
+                    <div class="recipe-card">
+                        <h3>🍖 烤排骨</h3>
+                        <div class="recipe-row"><span class="recipe-label">温度</span><span class="recipe-value"><span class="temp-badge">上 180℃</span> <span class="temp-badge">下 180℃</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">时间</span><span class="recipe-value"><span class="time-badge">25-30分钟</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">预热</span><span class="recipe-value"><span class="tag yes">是(5分钟)</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">层数</span><span class="recipe-value"><span class="tag layer-middle">中层</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">蒸汽</span><span class="recipe-value"><span class="tag yes">是</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">备注</span><span class="recipe-value">腌制30分钟</span></div>
+                    </div>
+                    <div class="recipe-card">
+                        <h3>🌭 烤香肠</h3>
+                        <div class="recipe-row"><span class="recipe-label">温度</span><span class="recipe-value"><span class="temp-badge">上 180℃</span> <span class="temp-badge">下 160℃</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">时间</span><span class="recipe-value"><span class="time-badge">10-12分钟</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">预热</span><span class="recipe-value"><span class="tag no">否</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">层数</span><span class="recipe-value"><span class="tag layer-middle">中层</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">蒸汽</span><span class="recipe-value"><span class="tag no">否</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">备注</span><span class="recipe-value">无需解冻</span></div>
+                    </div>
+                    <div class="recipe-card">
+                        <h3>🍗 烤鸡整只(≤1.2kg)</h3>
+                        <div class="recipe-row"><span class="recipe-label">温度</span><span class="recipe-value"><span class="temp-badge">上 180℃</span> <span class="temp-badge">下 180℃</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">时间</span><span class="recipe-value"><span class="time-badge">40-50分钟</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">预热</span><span class="recipe-value"><span class="tag yes">是(5分钟)</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">层数</span><span class="recipe-value"><span class="tag layer-bottom">下层</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">蒸汽</span><span class="recipe-value"><span class="tag yes">是</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">备注</span><span class="recipe-value">提前加水</span></div>
+                    </div>
+                </div>
             </div>
 
             <div id="seafood" class="section">
                 <h2>海鲜食谱</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>食物名称</th>
-                            <th>上层温度</th>
-                            <th>下层温度</th>
-                            <th>是否预热</th>
-                            <th>时间</th>
-                            <th>放置层数</th>
-                            <th>蒸汽补湿</th>
-                            <th>备注</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>椒盐大虾</td><td>200℃</td><td>180℃</td><td><span class="tag no">否</span></td><td>5-7分钟</td><td><span class="tag layer-middle">中层</span></td><td><span class="tag no">否</span></td><td>腌制5分钟</td></tr>
-                        <tr><td>香烤巴沙鱼</td><td>160℃</td><td>160℃</td><td><span class="tag no">否</span></td><td>8-10分钟</td><td><span class="tag layer-middle">中层</span></td><td><span class="tag yes">是</span></td><td>鲜嫩不腥</td></tr>
-                        <tr><td>烤三文鱼</td><td>180℃</td><td>160℃</td><td><span class="tag yes">是(5分钟)</span></td><td>12-15分钟</td><td><span class="tag layer-middle">中层</span></td><td><span class="tag yes">是</span></td><td>表面刷橄榄油</td></tr>
-                        <tr><td>烤鱼</td><td>180℃</td><td>180℃</td><td><span class="tag yes">是(5分钟)</span></td><td>11-13分钟</td><td><span class="tag layer-middle">中层</span></td><td><span class="tag yes">是</span></td><td>外脆里嫩</td></tr>
-                        <tr><td>蒜蓉粉丝虾</td><td>180℃</td><td>160℃</td><td><span class="tag no">否</span></td><td>10-12分钟</td><td><span class="tag layer-middle">中层</span></td><td><span class="tag yes">是</span></td><td>粉丝打底</td></tr>
-                        <tr><td>烤扇贝</td><td>180℃</td><td>160℃</td><td><span class="tag no">否</span></td><td>8-10分钟</td><td><span class="tag layer-middle">中层</span></td><td><span class="tag yes">是</span></td><td>粉丝蒜蓉铺底</td></tr>
-                    </tbody>
-                </table>
+                <div class="recipe-grid">
+                    <div class="recipe-card">
+                        <h3>🦐 椒盐大虾</h3>
+                        <div class="recipe-row"><span class="recipe-label">温度</span><span class="recipe-value"><span class="temp-badge">上 200℃</span> <span class="temp-badge">下 180℃</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">时间</span><span class="recipe-value"><span class="time-badge">5-7分钟</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">预热</span><span class="recipe-value"><span class="tag no">否</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">层数</span><span class="recipe-value"><span class="tag layer-middle">中层</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">蒸汽</span><span class="recipe-value"><span class="tag no">否</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">备注</span><span class="recipe-value">腌制5分钟</span></div>
+                    </div>
+                    <div class="recipe-card">
+                        <h3>🐟 香烤巴沙鱼</h3>
+                        <div class="recipe-row"><span class="recipe-label">温度</span><span class="recipe-value"><span class="temp-badge">上 160℃</span> <span class="temp-badge">下 160℃</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">时间</span><span class="recipe-value"><span class="time-badge">8-10分钟</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">预热</span><span class="recipe-value"><span class="tag no">否</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">层数</span><span class="recipe-value"><span class="tag layer-middle">中层</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">蒸汽</span><span class="recipe-value"><span class="tag yes">是</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">备注</span><span class="recipe-value">鲜嫩不腥</span></div>
+                    </div>
+                    <div class="recipe-card">
+                        <h3>🐟 烤三文鱼</h3>
+                        <div class="recipe-row"><span class="recipe-label">温度</span><span class="recipe-value"><span class="temp-badge">上 180℃</span> <span class="temp-badge">下 160℃</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">时间</span><span class="recipe-value"><span class="time-badge">12-15分钟</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">预热</span><span class="recipe-value"><span class="tag yes">是(5分钟)</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">层数</span><span class="recipe-value"><span class="tag layer-middle">中层</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">蒸汽</span><span class="recipe-value"><span class="tag yes">是</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">备注</span><span class="recipe-value">表面刷橄榄油</span></div>
+                    </div>
+                    <div class="recipe-card">
+                        <h3>🐟 烤鱼</h3>
+                        <div class="recipe-row"><span class="recipe-label">温度</span><span class="recipe-value"><span class="temp-badge">上 180℃</span> <span class="temp-badge">下 180℃</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">时间</span><span class="recipe-value"><span class="time-badge">11-13分钟</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">预热</span><span class="recipe-value"><span class="tag yes">是(5分钟)</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">层数</span><span class="recipe-value"><span class="tag layer-middle">中层</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">蒸汽</span><span class="recipe-value"><span class="tag yes">是</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">备注</span><span class="recipe-value">外脆里嫩</span></div>
+                    </div>
+                    <div class="recipe-card">
+                        <h3>🦐 蒜蓉粉丝虾</h3>
+                        <div class="recipe-row"><span class="recipe-label">温度</span><span class="recipe-value"><span class="temp-badge">上 180℃</span> <span class="temp-badge">下 160℃</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">时间</span><span class="recipe-value"><span class="time-badge">10-12分钟</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">预热</span><span class="recipe-value"><span class="tag no">否</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">层数</span><span class="recipe-value"><span class="tag layer-middle">中层</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">蒸汽</span><span class="recipe-value"><span class="tag yes">是</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">备注</span><span class="recipe-value">粉丝打底</span></div>
+                    </div>
+                    <div class="recipe-card">
+                        <h3>🐚 烤扇贝</h3>
+                        <div class="recipe-row"><span class="recipe-label">温度</span><span class="recipe-value"><span class="temp-badge">上 180℃</span> <span class="temp-badge">下 160℃</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">时间</span><span class="recipe-value"><span class="time-badge">8-10分钟</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">预热</span><span class="recipe-value"><span class="tag no">否</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">层数</span><span class="recipe-value"><span class="tag layer-middle">中层</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">蒸汽</span><span class="recipe-value"><span class="tag yes">是</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">备注</span><span class="recipe-value">粉丝蒜蓉铺底</span></div>
+                    </div>
+                </div>
             </div>
 
             <div id="vegetable" class="section">
                 <h2>蔬菜食谱</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>食物名称</th>
-                            <th>上层温度</th>
-                            <th>下层温度</th>
-                            <th>是否预热</th>
-                            <th>时间</th>
-                            <th>放置层数</th>
-                            <th>蒸汽补湿</th>
-                            <th>备注</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>速冻薯条</td><td>200℃</td><td>200℃</td><td><span class="tag yes">是(5分钟)</span></td><td>13-18分钟</td><td><span class="tag layer-middle">中层</span></td><td><span class="tag no">否</span></td><td>无需解冻</td></tr>
-                        <tr><td>自制薯条</td><td>200℃</td><td>200℃</td><td><span class="tag yes">是(5分钟)</span></td><td>15-20分钟</td><td><span class="tag layer-middle">中层</span></td><td><span class="tag no">否</span></td><td>泡水去淀粉</td></tr>
-                        <tr><td>烤红薯</td><td>200℃</td><td>180℃</td><td><span class="tag no">否</span></td><td>25-35分钟</td><td><span class="tag layer-bottom">下层</span></td><td><span class="tag no">否</span></td><td>扎孔排气</td></tr>
-                        <tr><td>烤玉米</td><td>180℃</td><td>180℃</td><td><span class="tag no">否</span></td><td>20-25分钟</td><td><span class="tag layer-middle">中层</span></td><td><span class="tag no">否</span></td><td>整根烤制</td></tr>
-                        <tr><td>烤西兰花</td><td>180℃</td><td>160℃</td><td><span class="tag no">否</span></td><td>10-12分钟</td><td><span class="tag layer-middle">中层</span></td><td><span class="tag no">否</span></td><td>喷薄油</td></tr>
-                        <tr><td>烤杂蔬拼盘</td><td>180℃</td><td>180℃</td><td><span class="tag no">否</span></td><td>15分钟</td><td><span class="tag layer-middle">中层</span></td><td><span class="tag no">否</span></td><td>土豆胡萝卜彩椒</td></tr>
-                        <tr><td>烤金针菇</td><td>180℃</td><td>160℃</td><td><span class="tag no">否</span></td><td>8-10分钟</td><td><span class="tag layer-middle">中层</span></td><td><span class="tag no">否</span></td><td>配蒜蓉蚝油</td></tr>
-                        <tr><td>烤茄子</td><td>180℃</td><td>160℃</td><td><span class="tag no">否</span></td><td>12-15分钟</td><td><span class="tag layer-middle">中层</span></td><td><span class="tag yes">是</span></td><td>对半切开</td></tr>
-                        <tr><td>烤口蘑</td><td>180℃</td><td>160℃</td><td><span class="tag no">否</span></td><td>8-10分钟</td><td><span class="tag layer-middle">中层</span></td><td><span class="tag no">否</span></td><td>菌盖朝上</td></tr>
-                        <tr><td>烤彩椒</td><td>180℃</td><td>160℃</td><td><span class="tag no">否</span></td><td>10-12分钟</td><td><span class="tag layer-middle">中层</span></td><td><span class="tag no">否</span></td><td>切块或整只</td></tr>
-                    </tbody>
-                </table>
+                <div class="recipe-grid">
+                    <div class="recipe-card">
+                        <h3>🍟 速冻薯条</h3>
+                        <div class="recipe-row"><span class="recipe-label">温度</span><span class="recipe-value"><span class="temp-badge">上 200℃</span> <span class="temp-badge">下 200℃</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">时间</span><span class="recipe-value"><span class="time-badge">13-18分钟</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">预热</span><span class="recipe-value"><span class="tag yes">是(5分钟)</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">层数</span><span class="recipe-value"><span class="tag layer-middle">中层</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">蒸汽</span><span class="recipe-value"><span class="tag no">否</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">备注</span><span class="recipe-value">无需解冻</span></div>
+                    </div>
+                    <div class="recipe-card">
+                        <h3>🍟 自制薯条</h3>
+                        <div class="recipe-row"><span class="recipe-label">温度</span><span class="recipe-value"><span class="temp-badge">上 200℃</span> <span class="temp-badge">下 200℃</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">时间</span><span class="recipe-value"><span class="time-badge">15-20分钟</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">预热</span><span class="recipe-value"><span class="tag yes">是(5分钟)</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">层数</span><span class="recipe-value"><span class="tag layer-middle">中层</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">蒸汽</span><span class="recipe-value"><span class="tag no">否</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">备注</span><span class="recipe-value">泡水去淀粉</span></div>
+                    </div>
+                    <div class="recipe-card">
+                        <h3>🍠 烤红薯</h3>
+                        <div class="recipe-row"><span class="recipe-label">温度</span><span class="recipe-value"><span class="temp-badge">上 200℃</span> <span class="temp-badge">下 180℃</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">时间</span><span class="recipe-value"><span class="time-badge">25-35分钟</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">预热</span><span class="recipe-value"><span class="tag no">否</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">层数</span><span class="recipe-value"><span class="tag layer-bottom">下层</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">蒸汽</span><span class="recipe-value"><span class="tag no">否</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">备注</span><span class="recipe-value">扎孔排气</span></div>
+                    </div>
+                    <div class="recipe-card">
+                        <h3>🌽 烤玉米</h3>
+                        <div class="recipe-row"><span class="recipe-label">温度</span><span class="recipe-value"><span class="temp-badge">上 180℃</span> <span class="temp-badge">下 180℃</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">时间</span><span class="recipe-value"><span class="time-badge">20-25分钟</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">预热</span><span class="recipe-value"><span class="tag no">否</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">层数</span><span class="recipe-value"><span class="tag layer-middle">中层</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">蒸汽</span><span class="recipe-value"><span class="tag no">否</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">备注</span><span class="recipe-value">整根烤制</span></div>
+                    </div>
+                    <div class="recipe-card">
+                        <h3>🥦 烤西兰花</h3>
+                        <div class="recipe-row"><span class="recipe-label">温度</span><span class="recipe-value"><span class="temp-badge">上 180℃</span> <span class="temp-badge">下 160℃</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">时间</span><span class="recipe-value"><span class="time-badge">10-12分钟</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">预热</span><span class="recipe-value"><span class="tag no">否</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">层数</span><span class="recipe-value"><span class="tag layer-middle">中层</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">蒸汽</span><span class="recipe-value"><span class="tag no">否</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">备注</span><span class="recipe-value">喷薄油</span></div>
+                    </div>
+                    <div class="recipe-card">
+                        <h3>🥗 烤杂蔬拼盘</h3>
+                        <div class="recipe-row"><span class="recipe-label">温度</span><span class="recipe-value"><span class="temp-badge">上 180℃</span> <span class="temp-badge">下 180℃</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">时间</span><span class="recipe-value"><span class="time-badge">15分钟</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">预热</span><span class="recipe-value"><span class="tag no">否</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">层数</span><span class="recipe-value"><span class="tag layer-middle">中层</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">蒸汽</span><span class="recipe-value"><span class="tag no">否</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">备注</span><span class="recipe-value">土豆胡萝卜彩椒</span></div>
+                    </div>
+                    <div class="recipe-card">
+                        <h3>🍄 烤金针菇</h3>
+                        <div class="recipe-row"><span class="recipe-label">温度</span><span class="recipe-value"><span class="temp-badge">上 180℃</span> <span class="temp-badge">下 160℃</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">时间</span><span class="recipe-value"><span class="time-badge">8-10分钟</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">预热</span><span class="recipe-value"><span class="tag no">否</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">层数</span><span class="recipe-value"><span class="tag layer-middle">中层</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">蒸汽</span><span class="recipe-value"><span class="tag no">否</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">备注</span><span class="recipe-value">配蒜蓉蚝油</span></div>
+                    </div>
+                    <div class="recipe-card">
+                        <h3>🍆 烤茄子</h3>
+                        <div class="recipe-row"><span class="recipe-label">温度</span><span class="recipe-value"><span class="temp-badge">上 180℃</span> <span class="temp-badge">下 160℃</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">时间</span><span class="recipe-value"><span class="time-badge">12-15分钟</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">预热</span><span class="recipe-value"><span class="tag no">否</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">层数</span><span class="recipe-value"><span class="tag layer-middle">中层</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">蒸汽</span><span class="recipe-value"><span class="tag yes">是</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">备注</span><span class="recipe-value">对半切开</span></div>
+                    </div>
+                    <div class="recipe-card">
+                        <h3>🍄 烤口蘑</h3>
+                        <div class="recipe-row"><span class="recipe-label">温度</span><span class="recipe-value"><span class="temp-badge">上 180℃</span> <span class="temp-badge">下 160℃</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">时间</span><span class="recipe-value"><span class="time-badge">8-10分钟</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">预热</span><span class="recipe-value"><span class="tag no">否</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">层数</span><span class="recipe-value"><span class="tag layer-middle">中层</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">蒸汽</span><span class="recipe-value"><span class="tag no">否</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">备注</span><span class="recipe-value">菌盖朝上</span></div>
+                    </div>
+                    <div class="recipe-card">
+                        <h3>🫑 烤彩椒</h3>
+                        <div class="recipe-row"><span class="recipe-label">温度</span><span class="recipe-value"><span class="temp-badge">上 180℃</span> <span class="temp-badge">下 160℃</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">时间</span><span class="recipe-value"><span class="time-badge">10-12分钟</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">预热</span><span class="recipe-value"><span class="tag no">否</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">层数</span><span class="recipe-value"><span class="tag layer-middle">中层</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">蒸汽</span><span class="recipe-value"><span class="tag no">否</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">备注</span><span class="recipe-value">切块或整只</span></div>
+                    </div>
+                </div>
             </div>
 
             <div id="staple" class="section">
                 <h2>主食食谱</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>食物名称</th>
-                            <th>上层温度</th>
-                            <th>下层温度</th>
-                            <th>是否预热</th>
-                            <th>时间</th>
-                            <th>放置层数</th>
-                            <th>蒸汽补湿</th>
-                            <th>备注</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>烤吐司</td><td>180℃</td><td>160℃</td><td><span class="tag no">否</span></td><td>6-8分钟</td><td><span class="tag layer-top">上层</span></td><td><span class="tag no">否</span></td><td>切片1cm</td></tr>
-                        <tr><td>葡式蛋挞</td><td>200℃</td><td>180℃</td><td><span class="tag yes">是(5-8分钟)</span></td><td>15-18分钟</td><td><span class="tag layer-middle">中层</span></td><td><span class="tag no">否</span></td><td>挞皮提前解冻</td></tr>
-                        <tr><td>6寸戚风蛋糕</td><td>150℃</td><td>150℃</td><td><span class="tag yes">是(5-8分钟)</span></td><td>35-40分钟</td><td><span class="tag layer-bottom">下层</span></td><td><span class="tag no">否</span></td><td>模具涂油防粘</td></tr>
-                        <tr><td>披萨</td><td>200℃</td><td>200℃</td><td><span class="tag yes">是(5-8分钟)</span></td><td>12-15分钟</td><td><span class="tag layer-middle">中层</span></td><td><span class="tag no">否</span></td><td>饼底提前准备</td></tr>
-                        <tr><td>速冻包子</td><td>160℃</td><td>160℃</td><td><span class="tag no">否</span></td><td>6-8分钟</td><td><span class="tag layer-middle">中层</span></td><td><span class="tag yes">是</span></td><td>无需解冻</td></tr>
-                        <tr><td>速冻饺子</td><td>160℃</td><td>160℃</td><td><span class="tag no">否</span></td><td>6-8分钟</td><td><span class="tag layer-middle">中层</span></td><td><span class="tag yes">是</span></td><td>无需解冻</td></tr>
-                        <tr><td>速冻烧麦</td><td>160℃</td><td>160℃</td><td><span class="tag no">否</span></td><td>6-8分钟</td><td><span class="tag layer-middle">中层</span></td><td><span class="tag yes">是</span></td><td>无需解冻</td></tr>
-                        <tr><td>奶香馒头</td><td>170℃</td><td>160℃</td><td><span class="tag no">否</span></td><td>5-6分钟</td><td><span class="tag layer-middle">中层</span></td><td><span class="tag yes">是</span></td><td>表面喷水雾</td></tr>
-                        <tr><td>烤年糕</td><td>180℃</td><td>160℃</td><td><span class="tag no">否</span></td><td>5-8分钟</td><td><span class="tag layer-middle">中层</span></td><td><span class="tag no">否</span></td><td>切片烤制</td></tr>
-                        <tr><td>烤饭团</td><td>180℃</td><td>160℃</td><td><span class="tag no">否</span></td><td>8-10分钟</td><td><span class="tag layer-middle">中层</span></td><td><span class="tag no">否</span></td><td>剩米饭制作</td></tr>
-                    </tbody>
-                </table>
+                <div class="recipe-grid">
+                    <div class="recipe-card">
+                        <h3>🍞 烤吐司</h3>
+                        <div class="recipe-row"><span class="recipe-label">温度</span><span class="recipe-value"><span class="temp-badge">上 180℃</span> <span class="temp-badge">下 160℃</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">时间</span><span class="recipe-value"><span class="time-badge">6-8分钟</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">预热</span><span class="recipe-value"><span class="tag no">否</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">层数</span><span class="recipe-value"><span class="tag layer-top">上层</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">蒸汽</span><span class="recipe-value"><span class="tag no">否</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">备注</span><span class="recipe-value">切片1cm</span></div>
+                    </div>
+                    <div class="recipe-card">
+                        <h3>🥧 葡式蛋挞</h3>
+                        <div class="recipe-row"><span class="recipe-label">温度</span><span class="recipe-value"><span class="temp-badge">上 200℃</span> <span class="temp-badge">下 180℃</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">时间</span><span class="recipe-value"><span class="time-badge">15-18分钟</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">预热</span><span class="recipe-value"><span class="tag yes">是(5-8分钟)</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">层数</span><span class="recipe-value"><span class="tag layer-middle">中层</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">蒸汽</span><span class="recipe-value"><span class="tag no">否</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">备注</span><span class="recipe-value">挞皮提前解冻</span></div>
+                    </div>
+                    <div class="recipe-card">
+                        <h3>🍰 6寸戚风蛋糕</h3>
+                        <div class="recipe-row"><span class="recipe-label">温度</span><span class="recipe-value"><span class="temp-badge">上 150℃</span> <span class="temp-badge">下 150℃</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">时间</span><span class="recipe-value"><span class="time-badge">35-40分钟</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">预热</span><span class="recipe-value"><span class="tag yes">是(5-8分钟)</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">层数</span><span class="recipe-value"><span class="tag layer-bottom">下层</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">蒸汽</span><span class="recipe-value"><span class="tag no">否</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">备注</span><span class="recipe-value">模具涂油防粘</span></div>
+                    </div>
+                    <div class="recipe-card">
+                        <h3>🍕 披萨</h3>
+                        <div class="recipe-row"><span class="recipe-label">温度</span><span class="recipe-value"><span class="temp-badge">上 200℃</span> <span class="temp-badge">下 200℃</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">时间</span><span class="recipe-value"><span class="time-badge">12-15分钟</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">预热</span><span class="recipe-value"><span class="tag yes">是(5-8分钟)</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">层数</span><span class="recipe-value"><span class="tag layer-middle">中层</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">蒸汽</span><span class="recipe-value"><span class="tag no">否</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">备注</span><span class="recipe-value">饼底提前准备</span></div>
+                    </div>
+                    <div class="recipe-card">
+                        <h3>🥟 速冻包子</h3>
+                        <div class="recipe-row"><span class="recipe-label">温度</span><span class="recipe-value"><span class="temp-badge">上 160℃</span> <span class="temp-badge">下 160℃</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">时间</span><span class="recipe-value"><span class="time-badge">6-8分钟</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">预热</span><span class="recipe-value"><span class="tag no">否</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">层数</span><span class="recipe-value"><span class="tag layer-middle">中层</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">蒸汽</span><span class="recipe-value"><span class="tag yes">是</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">备注</span><span class="recipe-value">无需解冻</span></div>
+                    </div>
+                    <div class="recipe-card">
+                        <h3>🥟 速冻饺子</h3>
+                        <div class="recipe-row"><span class="recipe-label">温度</span><span class="recipe-value"><span class="temp-badge">上 160℃</span> <span class="temp-badge">下 160℃</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">时间</span><span class="recipe-value"><span class="time-badge">6-8分钟</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">预热</span><span class="recipe-value"><span class="tag no">否</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">层数</span><span class="recipe-value"><span class="tag layer-middle">中层</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">蒸汽</span><span class="recipe-value"><span class="tag yes">是</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">备注</span><span class="recipe-value">无需解冻</span></div>
+                    </div>
+                    <div class="recipe-card">
+                        <h3>🥟 速冻烧麦</h3>
+                        <div class="recipe-row"><span class="recipe-label">温度</span><span class="recipe-value"><span class="temp-badge">上 160℃</span> <span class="temp-badge">下 160℃</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">时间</span><span class="recipe-value"><span class="time-badge">6-8分钟</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">预热</span><span class="recipe-value"><span class="tag no">否</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">层数</span><span class="recipe-value"><span class="tag layer-middle">中层</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">蒸汽</span><span class="recipe-value"><span class="tag yes">是</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">备注</span><span class="recipe-value">无需解冻</span></div>
+                    </div>
+                    <div class="recipe-card">
+                        <h3>🥢 奶香馒头</h3>
+                        <div class="recipe-row"><span class="recipe-label">温度</span><span class="recipe-value"><span class="temp-badge">上 170℃</span> <span class="temp-badge">下 160℃</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">时间</span><span class="recipe-value"><span class="time-badge">5-6分钟</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">预热</span><span class="recipe-value"><span class="tag no">否</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">层数</span><span class="recipe-value"><span class="tag layer-middle">中层</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">蒸汽</span><span class="recipe-value"><span class="tag yes">是</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">备注</span><span class="recipe-value">表面喷水雾</span></div>
+                    </div>
+                    <div class="recipe-card">
+                        <h3>🍘 烤年糕</h3>
+                        <div class="recipe-row"><span class="recipe-label">温度</span><span class="recipe-value"><span class="temp-badge">上 180℃</span> <span class="temp-badge">下 160℃</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">时间</span><span class="recipe-value"><span class="time-badge">5-8分钟</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">预热</span><span class="recipe-value"><span class="tag no">否</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">层数</span><span class="recipe-value"><span class="tag layer-middle">中层</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">蒸汽</span><span class="recipe-value"><span class="tag no">否</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">备注</span><span class="recipe-value">切片烤制</span></div>
+                    </div>
+                    <div class="recipe-card">
+                        <h3>🍙 烤饭团</h3>
+                        <div class="recipe-row"><span class="recipe-label">温度</span><span class="recipe-value"><span class="temp-badge">上 180℃</span> <span class="temp-badge">下 160℃</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">时间</span><span class="recipe-value"><span class="time-badge">8-10分钟</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">预热</span><span class="recipe-value"><span class="tag no">否</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">层数</span><span class="recipe-value"><span class="tag layer-middle">中层</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">蒸汽</span><span class="recipe-value"><span class="tag no">否</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">备注</span><span class="recipe-value">剩米饭制作</span></div>
+                    </div>
+                </div>
             </div>
 
             <div id="snack" class="section">
                 <h2>甜品零食</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>食物名称</th>
-                            <th>上层温度</th>
-                            <th>下层温度</th>
-                            <th>是否预热</th>
-                            <th>时间</th>
-                            <th>放置层数</th>
-                            <th>蒸汽补湿</th>
-                            <th>备注</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>烤红薯干</td><td>80℃</td><td>80℃</td><td><span class="tag no">否</span></td><td>60-90分钟</td><td><span class="tag layer-middle">中层</span></td><td><span class="tag no">否</span></td><td>低温慢烘</td></tr>
-                        <tr><td>苹果片果干</td><td>80℃</td><td>80℃</td><td><span class="tag no">否</span></td><td>40-60分钟</td><td><span class="tag layer-middle">中层</span></td><td><span class="tag no">否</span></td><td>切片2-3mm</td></tr>
-                        <tr><td>香蕉片果干</td><td>80℃</td><td>80℃</td><td><span class="tag no">否</span></td><td>40-50分钟</td><td><span class="tag layer-middle">中层</span></td><td><span class="tag no">否</span></td><td>切片3-4mm</td></tr>
-                        <tr><td>脆炸炼奶香蕉</td><td>180℃</td><td>160℃</td><td><span class="tag no">否</span></td><td>5分钟</td><td><span class="tag layer-middle">中层</span></td><td><span class="tag no">否</span></td><td>裹蛋液面包糠</td></tr>
-                        <tr><td>烤红枣脆</td><td>120℃</td><td>120℃</td><td><span class="tag no">否</span></td><td>15分钟</td><td><span class="tag layer-middle">中层</span></td><td><span class="tag no">否</span></td><td>低温烘后上色</td></tr>
-                        <tr><td>烤红枣脆(上色)</td><td>180℃</td><td>160℃</td><td><span class="tag no">否</span></td><td>5分钟</td><td><span class="tag layer-top">上层</span></td><td><span class="tag no">否</span></td><td>快速上色增脆</td></tr>
-                        <tr><td>椒盐花生</td><td>180℃</td><td>160℃</td><td><span class="tag no">否</span></td><td>13分钟</td><td><span class="tag layer-middle">中层</span></td><td><span class="tag no">否</span></td><td>生花生拌盐</td></tr>
-                        <tr><td>烤核桃</td><td>180℃</td><td>160℃</td><td><span class="tag no">否</span></td><td>8-10分钟</td><td><span class="tag layer-middle">中层</span></td><td><span class="tag no">否</span></td><td>开口更易入味</td></tr>
-                        <tr><td>烤杏仁</td><td>170℃</td><td>160℃</td><td><span class="tag no">否</span></td><td>8-10分钟</td><td><span class="tag layer-middle">中层</span></td><td><span class="tag no">否</span></td><td>薄喷一层油</td></tr>
-                        <tr><td>烤棉花糖</td><td>180℃</td><td>160℃</td><td><span class="tag no">否</span></td><td>3-5分钟</td><td><span class="tag layer-top">上层</span></td><td><span class="tag no">否</span></td><td>快速加热</td></tr>
-                        <tr><td>巧克力曲奇</td><td>180℃</td><td>160℃</td><td><span class="tag yes">是(5分钟)</span></td><td>10-12分钟</td><td><span class="tag layer-middle">中层</span></td><td><span class="tag no">否</span></td><td>边缘易焦</td></tr>
-                    </tbody>
-                </table>
+                <div class="recipe-grid">
+                    <div class="recipe-card">
+                        <h3>🍠 烤红薯干</h3>
+                        <div class="recipe-row"><span class="recipe-label">温度</span><span class="recipe-value"><span class="temp-badge">上 80℃</span> <span class="temp-badge">下 80℃</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">时间</span><span class="recipe-value"><span class="time-badge">60-90分钟</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">预热</span><span class="recipe-value"><span class="tag no">否</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">层数</span><span class="recipe-value"><span class="tag layer-middle">中层</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">蒸汽</span><span class="recipe-value"><span class="tag no">否</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">备注</span><span class="recipe-value">低温慢烘</span></div>
+                    </div>
+                    <div class="recipe-card">
+                        <h3>🍎 苹果片果干</h3>
+                        <div class="recipe-row"><span class="recipe-label">温度</span><span class="recipe-value"><span class="temp-badge">上 80℃</span> <span class="temp-badge">下 80℃</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">时间</span><span class="recipe-value"><span class="time-badge">40-60分钟</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">预热</span><span class="recipe-value"><span class="tag no">否</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">层数</span><span class="recipe-value"><span class="tag layer-middle">中层</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">蒸汽</span><span class="recipe-value"><span class="tag no">否</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">备注</span><span class="recipe-value">切片2-3mm</span></div>
+                    </div>
+                    <div class="recipe-card">
+                        <h3>🍌 香蕉片果干</h3>
+                        <div class="recipe-row"><span class="recipe-label">温度</span><span class="recipe-value"><span class="temp-badge">上 80℃</span> <span class="temp-badge">下 80℃</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">时间</span><span class="recipe-value"><span class="time-badge">40-50分钟</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">预热</span><span class="recipe-value"><span class="tag no">否</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">层数</span><span class="recipe-value"><span class="tag layer-middle">中层</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">蒸汽</span><span class="recipe-value"><span class="tag no">否</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">备注</span><span class="recipe-value">切片3-4mm</span></div>
+                    </div>
+                    <div class="recipe-card">
+                        <h3>🍌 脆炸炼奶香蕉</h3>
+                        <div class="recipe-row"><span class="recipe-label">温度</span><span class="recipe-value"><span class="temp-badge">上 180℃</span> <span class="temp-badge">下 160℃</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">时间</span><span class="recipe-value"><span class="time-badge">5分钟</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">预热</span><span class="recipe-value"><span class="tag no">否</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">层数</span><span class="recipe-value"><span class="tag layer-middle">中层</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">蒸汽</span><span class="recipe-value"><span class="tag no">否</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">备注</span><span class="recipe-value">裹蛋液面包糠</span></div>
+                    </div>
+                    <div class="recipe-card">
+                        <h3>🔴 烤红枣脆</h3>
+                        <div class="recipe-row"><span class="recipe-label">温度</span><span class="recipe-value"><span class="temp-badge">上 120℃</span> <span class="temp-badge">下 120℃</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">时间</span><span class="recipe-value"><span class="time-badge">15分钟</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">预热</span><span class="recipe-value"><span class="tag no">否</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">层数</span><span class="recipe-value"><span class="tag layer-middle">中层</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">蒸汽</span><span class="recipe-value"><span class="tag no">否</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">备注</span><span class="recipe-value">低温烘后上色</span></div>
+                    </div>
+                    <div class="recipe-card">
+                        <h3>🔴 烤红枣脆(上色)</h3>
+                        <div class="recipe-row"><span class="recipe-label">温度</span><span class="recipe-value"><span class="temp-badge">上 180℃</span> <span class="temp-badge">下 160℃</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">时间</span><span class="recipe-value"><span class="time-badge">5分钟</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">预热</span><span class="recipe-value"><span class="tag no">否</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">层数</span><span class="recipe-value"><span class="tag layer-top">上层</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">蒸汽</span><span class="recipe-value"><span class="tag no">否</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">备注</span><span class="recipe-value">快速上色增脆</span></div>
+                    </div>
+                    <div class="recipe-card">
+                        <h3>🥜 椒盐花生</h3>
+                        <div class="recipe-row"><span class="recipe-label">温度</span><span class="recipe-value"><span class="temp-badge">上 180℃</span> <span class="temp-badge">下 160℃</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">时间</span><span class="recipe-value"><span class="time-badge">13分钟</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">预热</span><span class="recipe-value"><span class="tag no">否</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">层数</span><span class="recipe-value"><span class="tag layer-middle">中层</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">蒸汽</span><span class="recipe-value"><span class="tag no">否</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">备注</span><span class="recipe-value">生花生拌盐</span></div>
+                    </div>
+                    <div class="recipe-card">
+                        <h3>🥜 烤核桃</h3>
+                        <div class="recipe-row"><span class="recipe-label">温度</span><span class="recipe-value"><span class="temp-badge">上 180℃</span> <span class="temp-badge">下 160℃</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">时间</span><span class="recipe-value"><span class="time-badge">8-10分钟</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">预热</span><span class="recipe-value"><span class="tag no">否</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">层数</span><span class="recipe-value"><span class="tag layer-middle">中层</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">蒸汽</span><span class="recipe-value"><span class="tag no">否</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">备注</span><span class="recipe-value">开口更易入味</span></div>
+                    </div>
+                    <div class="recipe-card">
+                        <h3>🥜 烤杏仁</h3>
+                        <div class="recipe-row"><span class="recipe-label">温度</span><span class="recipe-value"><span class="temp-badge">上 170℃</span> <span class="temp-badge">下 160℃</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">时间</span><span class="recipe-value"><span class="time-badge">8-10分钟</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">预热</span><span class="recipe-value"><span class="tag no">否</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">层数</span><span class="recipe-value"><span class="tag layer-middle">中层</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">蒸汽</span><span class="recipe-value"><span class="tag no">否</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">备注</span><span class="recipe-value">薄喷一层油</span></div>
+                    </div>
+                    <div class="recipe-card">
+                        <h3>🍬 烤棉花糖</h3>
+                        <div class="recipe-row"><span class="recipe-label">温度</span><span class="recipe-value"><span class="temp-badge">上 180℃</span> <span class="temp-badge">下 160℃</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">时间</span><span class="recipe-value"><span class="time-badge">3-5分钟</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">预热</span><span class="recipe-value"><span class="tag no">否</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">层数</span><span class="recipe-value"><span class="tag layer-top">上层</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">蒸汽</span><span class="recipe-value"><span class="tag no">否</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">备注</span><span class="recipe-value">快速加热</span></div>
+                    </div>
+                    <div class="recipe-card">
+                        <h3>🍪 巧克力曲奇</h3>
+                        <div class="recipe-row"><span class="recipe-label">温度</span><span class="recipe-value"><span class="temp-badge">上 180℃</span> <span class="temp-badge">下 160℃</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">时间</span><span class="recipe-value"><span class="time-badge">10-12分钟</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">预热</span><span class="recipe-value"><span class="tag yes">是(5分钟)</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">层数</span><span class="recipe-value"><span class="tag layer-middle">中层</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">蒸汽</span><span class="recipe-value"><span class="tag no">否</span></span></div>
+                        <div class="recipe-row"><span class="recipe-label">备注</span><span class="recipe-value">边缘易焦</span></div>
+                    </div>
+                </div>
             </div>
 
             <div id="tips" class="section">
@@ -852,21 +1255,18 @@
             var foundCount = 0;
 
             sections.forEach(function(section) {
-                var tables = section.querySelectorAll('table');
-                tables.forEach(function(table) {
-                    var rows = table.querySelectorAll('tbody tr');
-                    rows.forEach(function(row) {
-                        var nameCell = row.querySelector('td:first-child');
-                        if (nameCell) {
-                            var name = nameCell.textContent.toLowerCase();
-                            if (name.indexOf(filter) > -1) {
-                                row.style.display = '';
-                                foundCount++;
-                            } else {
-                                row.style.display = 'none';
-                            }
+                var cards = section.querySelectorAll('.recipe-card');
+                cards.forEach(function(card) {
+                    var title = card.querySelector('h3');
+                    if (title) {
+                        var name = title.textContent.toLowerCase();
+                        if (name.indexOf(filter) > -1) {
+                            card.style.display = '';
+                            foundCount++;
+                        } else {
+                            card.style.display = 'none';
                         }
-                    });
+                    }
                 });
             });
 
@@ -879,17 +1279,14 @@
                 resultsDiv.textContent = '找到 ' + foundCount + ' 个匹配结果';
                 
                 sections.forEach(function(section) {
-                    var tables = section.querySelectorAll('table');
-                    var hasVisibleRows = false;
-                    tables.forEach(function(table) {
-                        var rows = table.querySelectorAll('tbody tr');
-                        rows.forEach(function(row) {
-                            if (row.style.display !== 'none') {
-                                hasVisibleRows = true;
-                            }
-                        });
+                    var cards = section.querySelectorAll('.recipe-card');
+                    var hasVisibleCards = false;
+                    cards.forEach(function(card) {
+                        if (card.style.display !== 'none') {
+                            hasVisibleCards = true;
+                        }
                     });
-                    section.style.display = hasVisibleRows ? '' : 'none';
+                    section.style.display = hasVisibleCards ? '' : 'none';
                 });
             }
         }
