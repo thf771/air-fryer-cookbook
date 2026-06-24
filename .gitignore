@@ -1,0 +1,5 @@
+*.md
+qrcode.png
+qrcode_public.png
+.git/
+config.js
